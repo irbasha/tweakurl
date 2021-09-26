@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import "./App.css";
 
-const BACKEND_HOST = "https://simpleapi-app.herokuapp.com/api/";
+const BACKEND_HOST = "https://simpleapi-app.herokuapp.com/api";
 
 function App() {
   const [urls, setUrls] = useState([]);
