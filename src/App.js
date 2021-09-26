@@ -13,9 +13,11 @@ function App() {
   const [shortenUrl, setShortenUrl] = useState("");
 
   const fetchUrls = async () => {
-    const response = await fetch(`http://window.location.origin/shorturls/`);
+    const response = await fetch(
+      `http://${window.location.origin}:5000/shorturls/`
+    );
     const data = await response.json();
-
+    console.log("shorturls ", data);
     setUrls(data);
   };
 
@@ -24,13 +26,16 @@ function App() {
   }, []);
 
   const addUrlJson = async (urlJson) => {
-    const response = await fetch("http://window.location.origin/shorturls/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(urlJson),
-    });
+    const response = await fetch(
+      `http://${window.location.hostname}/shorturls/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(urlJson),
+      }
+    );
 
     const data = await response.json();
     console.log(data);
@@ -42,7 +47,7 @@ function App() {
   };
 
   const shortUrlExist = async (id) => {
-    const hostUrl = `http://window.location.origin/shorturls/${id}`;
+    const hostUrl = `http://${window.location.hostname}/shorturls/${id}`;
     const response = await fetch(hostUrl);
     if (response.status === 200) {
       const data = await response.json();
