@@ -8,16 +8,15 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import "./App.css";
 
+const BACKEND_HOST = "https://simpleapi-app.herokuapp.com";
+
 function App() {
   const [urls, setUrls] = useState([]);
   const [shortenUrl, setShortenUrl] = useState("");
 
   const fetchUrls = async () => {
-    const response = await fetch(
-      `https://${window.location.hostname}/api/shorturls/`
-    );
+    const response = await fetch(BACKEND_HOST + "/shorturls/");
     const data = await response.json();
-    console.log("shorturls ", data);
     setUrls(data);
   };
 
@@ -26,16 +25,13 @@ function App() {
   }, []);
 
   const addUrlJson = async (urlJson) => {
-    const response = await fetch(
-      `https://${window.location.hostname}/api/shorturls/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(urlJson),
-      }
-    );
+    const response = await fetch(BACKEND_HOST + "/shorturls/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(urlJson),
+    });
 
     const data = await response.json();
     console.log(data);
@@ -47,7 +43,7 @@ function App() {
   };
 
   const shortUrlExist = async (id) => {
-    const hostUrl = `https://${window.location.hostname}/api/shorturls/${id}`;
+    const hostUrl = BACKEND_HOST + `/shorturls/${id}`;
     const response = await fetch(hostUrl);
     if (response.status === 200) {
       const data = await response.json();
