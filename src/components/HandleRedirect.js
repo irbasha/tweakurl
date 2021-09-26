@@ -1,12 +1,12 @@
 const HandleRedirect = () => {
-  const BACKEND_HOST = "https://simpleapi-app.herokuapp.com";
+  const BACKEND_HOST = "https://simpleapi-app.herokuapp.com/api/";
 
   const fetchUrlJson = async () => {
     const shortUrlId = window.location.pathname.substring(3);
     console.log(shortUrlId);
 
     const response = await fetch(
-      BACKEND_HOST + `/api/shorturls/_search?urlId=${shortUrlId}`
+      BACKEND_HOST + `/shorturls/_search?urlId=${shortUrlId}`
     );
     console.log("response", response);
     const data = response.status === 200 ? await response.json() : null;
