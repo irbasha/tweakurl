@@ -14,7 +14,7 @@ function App() {
 
   const fetchUrls = async () => {
     const response = await fetch(
-      `http://${window.location.origin}:5000/shorturls/`
+      `https://${window.location.hostname}/shorturls/`
     );
     const data = await response.json();
     console.log("shorturls ", data);
@@ -27,7 +27,7 @@ function App() {
 
   const addUrlJson = async (urlJson) => {
     const response = await fetch(
-      `http://${window.location.hostname}/shorturls/`,
+      `https://${window.location.hostname}/shorturls/`,
       {
         method: "POST",
         headers: {
@@ -47,7 +47,7 @@ function App() {
   };
 
   const shortUrlExist = async (id) => {
-    const hostUrl = `http://${window.location.hostname}/shorturls/${id}`;
+    const hostUrl = `https://${window.location.hostname}/shorturls/${id}`;
     const response = await fetch(hostUrl);
     if (response.status === 200) {
       const data = await response.json();
