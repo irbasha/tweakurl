@@ -4,7 +4,7 @@ const HandleRedirect = () => {
     console.log(shortUrlId);
 
     const response = await fetch(
-      `http://localhost:5000/api/shorturls/_search?urlId=${shortUrlId}`
+      `http://window.location.origin/api/shorturls/_search?urlId=${shortUrlId}`
     );
     const data = await response.json();
     return data;
