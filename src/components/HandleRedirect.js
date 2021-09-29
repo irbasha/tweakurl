@@ -16,7 +16,7 @@ const HandleRedirect = () => {
   const fetchUrl = async () => {
     const data = await fetchUrlJson();
     console.log("data", data);
-    let longUrl = data ? data[0].longUrl : undefined;
+    let longUrl = data.length > 0 ? data[0].longUrl : undefined;
     console.log(longUrl);
     if (longUrl !== undefined) {
       window.location = longUrl;
